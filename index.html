@@ -2,9 +2,15 @@
 <html>
   <head>
     <title>Hello World!</title>
+    <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="js/smooth-add.js"></script>
+    <link rel="stylesheet" href="css/ui.css" type="text/css">
   </head>
   <body>
-    <h1>Hello World!</h1>
-    We are using node.js <script>document.write(process.version)</script>.
+    <ul id="u10" class="example" style="overflow: visible; height: auto; display: block;">
+	<li style="margin-top: 4px; position: relative; top: 0px;">A new item</li>
+	<li style="margin-top: 4px; position: relative; top: 0px;">A new item</li>
+    </ul>
+    <input type=submit onclick="smoothAdd('u10', 'text')">
   </body>
 </html>
