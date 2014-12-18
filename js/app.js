@@ -92,8 +92,16 @@ function updatemsg() {
     }
 }
 
-setInterval(follower_poll, 30000);
-start_streamtip();
-start_ircbot();
+if (global.config.followers) {
+    setInterval(follower_poll, 30000);
+}
+
+if (global.config.tips) {
+    start_streamtip();
+}
+
+if (global.config.subs) {
+    start_ircbot();
+}
 
 setInterval(updatemsg, 5000);
