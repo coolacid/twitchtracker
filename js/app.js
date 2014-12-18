@@ -3,37 +3,37 @@ tc = require("timezonecomplete");
 io = require('socket.io-client');
 irc = require('irc');
 
-config = require("./config.json")
+global.config = require("./config.json")
 
 global.lastfollower = new tc.DateTime();
 global.followers = [];
 global.msgqueue = [];
 
-var url = 'https://api.twitch.tv/kraken/channels/' + config['user'] + '/follows/?limit=10';
-
+function start_ircbot() {
 // Start the IRC Bot to listen for new subscribers
-var bot = new irc.Client('irc.twitch.tv', config['botname'], {
-    debug: true,
-    channels: ["#" + config['user']],
-    password: config['token']
-});
+    var bot = new irc.Client('irc.twitch.tv', global.config['botname'], {
+	debug: true,
+	channels: ["#" + global.config['user']],
+	password: global.config['token']
+    });
 
-bot.addListener('error', function(message) {
-    console.error('ERROR: %s: %s', message.command, message.args.join(' '));
-});
+    bot.addListener('error', function(message) {
+	console.error('ERROR: %s: %s', message.command, message.args.join(' '));
+    });
 
-bot.addListener('message', function (from, to, message) {
-    if ( to.match(/^[#&]/) ) {
-	if ( from.match(/^twitchnotify$/) ) {
-	    global.msgqueue.unshift(message);
-	    console.log('Got: %s', message);
+    bot.addListener('message', function (from, to, message) {
+	if ( to.match(/^[#&]/) ) {
+	    if ( from.match(/^twitchnotify$/) ) {
+		global.msgqueue.unshift(message);
+		console.log('Got: %s', message);
+	    }
 	}
-    }
-});
+    });
+}
 
 function start_streamtip() {
     var socket = io.connect('https://streamtip.com', {
-        query: 'client_id='+encodeURIComponent(config['st_client_id'])+'&access_token='+encodeURIComponent(config['st_access_token'])
+        query: 'client_id='+encodeURIComponent(global.config['st_client_id'])+'&access_token='+encodeURIComponent(global.config['st_access_token'])
     });
 
     socket.on('authenticated', function() {
@@ -53,7 +53,9 @@ function start_streamtip() {
     });
 }
 
-function follower_poll(url) {
+function follower_poll() {
+    var url = 'https://api.twitch.tv/kraken/channels/' + global.config['user'] + '/follows/?limit=10';
+
     http.get(url, function(res) {
 	var body = '';
 
@@ -90,6 +92,8 @@ function updatemsg() {
     }
 }
 
-setInterval(follower_poll, 30000, url);
-setInterval(updatemsg, 5000);
+setInterval(follower_poll, 30000);
 start_streamtip();
+start_ircbot();
+
+setInterval(updatemsg, 5000);
