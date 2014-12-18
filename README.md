@@ -3,20 +3,26 @@ TwitchTracker
 
 This is a node-webkit application to monitor and provide twitch notifications.
 
-If running from source, start by installing node-webkit. Download this software and run "npm install" to download the dependencies.
+To start from source:
+- Install node, npm, and node-webkit for your platform
+- Download the software
+- run "npm install" to get all the depencies
+- Launch the software running node-webkit
+
+Note: 
+
+You can also build a bundle by installing and running node.js grunt.
 
 Modifing the Looks
 ==================
 
 So you don't like my talented design? Well, really, it's a direct rip from the tutorial http://www.fiveminuteargument.com/blog/scrolling-list.
 
-Any case, if you haven't already guessed it's all HTML/CSS based. 
+Any case, if you haven't already guessed it's all HTML/CSS based.
 
-As long as you have a ul with and id="u10" somewhere in the index.html file it'll work.
-
-Oh, and you can modify the ui.css file in ./css as well to change the look.
+Currently, if you're running using a package, you can only modify the CSS file. You do this by placeing a ui.css file in the same directory as your twitchtracker.yml configuration file.
 
 Chroma Key
 ==========
 
-If you want to play with chroma key, there is an example ui-chroma.css file in the css directory. Just change the css file in the index.html file to point to this to get started.
+If you want to play with chroma key, there is an example ui-chroma.css file in the css directory. Just rename the file to ui.css and place in the same directory as your twitchtracker.yml configuration file.

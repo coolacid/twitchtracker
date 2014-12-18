@@ -34,6 +34,7 @@ global.msgqueue = [];
 global.filequeue = [];
 
 global.mainwin.on('loaded', function() {
+    load_css();
     items = global.config.items
     while (items > 0) {
 	initAdd('u10');
@@ -143,6 +144,19 @@ function write_file(mesg) {
 	console.log(err);
     });
 //    stream.close();
+}
+
+function load_css() {
+    if (fs.existsSync(path.join(gui.App.dataPath, "ui.css"))) {
+	filename = path.join(gui.App.dataPath, "ui.css");
+    } else {
+	filename = path.join(process.cwd(), "css", "ui.css");
+    }
+    var fileref=document.createElement("link")
+    fileref.setAttribute("rel", "stylesheet")
+    fileref.setAttribute("type", "text/css")
+    fileref.setAttribute("href", filename)
+    global.window.document.getElementsByTagName("head")[0].appendChild(fileref)
 }
 
 if (global.config.followers) {
