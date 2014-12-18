@@ -1,3 +1,4 @@
+// http://www.fiveminuteargument.com/blog/scrolling-list
 // http://www.fiveminuteargument.com/smooth-add.js
 
 function smoothAdd(id, text)

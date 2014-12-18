@@ -14,5 +14,10 @@
     },
     "webkit": {
 	"plugin": true
+    },
+    "dependencies": {
+	"irc": "^0.3.7",
+	"socket.io-client": "^1.2.1",
+	"timezonecomplete": "^1.11.0"
     }
 }
