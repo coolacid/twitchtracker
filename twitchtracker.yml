@@ -1,28 +1,29 @@
-// Welcome to TwitchTracker - this is the configureation file. 
+# Welcome to TwitchTracker - this is the configureation file. 
 
-configured: false  // Set this to TRUE when you have configured bellow
-
-// Set your twitch username here! This is used to monitor the followers, and which chat channel to connect too.
+# Set your twitch username here! This is used to monitor the followers, and which chat channel to connect too.
 user: 
 
-// Chatbot configuration. TT will sit in your chat channel to listen for subscriber notifications. Set the following
-// to the bots username and OAUTH token. This does NOT need to be a bot, it can be you're own account too.
-// You can get an OAUTH token from: http://www.twitchapps.com/tmi/
+# Chatbot configuration. TT will sit in your chat channel to listen for subscriber notifications. Set the following
+# to the bots username and OAUTH token. This does NOT need to be a bot, it can be you're own account too.
+# You can get an OAUTH token from: http:#www.twitchapps.com/tmi/
 botname:
 token:
 
-// StreamTip configuration. TT connects to the StreamTip live feed to get time details. Enter your Client ID, and Access token bellow.
-// You can get these details from: https://streamtip.com/account/billing
+# StreamTip configuration. TT connects to the StreamTip live feed to get time details. Enter your Client ID, and Access token bellow.
+# You can get these details from: https:#streamtip.com/account/billing
 st_client_id: Enter Streamtip client id here
 st_access_token: Enter Streamtip access token here
 
-// What you want to watch. The following items can be set to true or false depending on what you want to watch. 
+# What you want to watch. The following items can be set to true or false depending on what you want to watch. 
 subs: true
 followers: true
 tips: true
 
-// How many items you want to display and write to the text file.
+# How many items you want to display and write to the text file.
 items: 2
 
-// Text file name found in the logs directory where you found this file!
+# Text file name found in the logs directory where you found this file!
 file: report.txt
+
+# Set this to TRUE when you have configured bellow
+configured: false  
