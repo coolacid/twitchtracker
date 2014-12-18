@@ -12,7 +12,7 @@ So you don't like my talented design? Well, really, it's a direct rip from the t
 
 Any case, if you haven't already guessed it's all HTML/CSS based. 
 
-As long as you have a <ul id="u10"> somewhere in the index.html file it'll work.
+As long as you have a ul with and id="u10" somewhere in the index.html file it'll work.
 
 Oh, and you can modify the ui.css file in ./css as well to change the look.
 
