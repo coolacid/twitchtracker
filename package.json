@@ -4,7 +4,7 @@
   "main": "index.html",
   "window": {
     "title": "Twitch Tracker",
-    "toolbar": true,
+    "toolbar": false,
     "frame": true,
     "width": 800,
     "height": 500,
