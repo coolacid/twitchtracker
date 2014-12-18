@@ -1,6 +1,12 @@
 // http://www.fiveminuteargument.com/blog/scrolling-list
 // http://www.fiveminuteargument.com/smooth-add.js
 
+function initAdd(id)
+{
+	var el = $('#' + id);
+	el.prepend('<li>&nbsp</li>');
+}
+
 function smoothAdd(id, text)
 {
 	var el = $('#' + id);

@@ -6,6 +6,7 @@
     "st_access_token": "Enter Streamtip access token here",
     "subs": true,
     "followers": true,
-    "tips": true
+    "tips": true,
+    "items": 2
 }
 

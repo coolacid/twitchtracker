@@ -2,12 +2,21 @@ http = require('https');
 tc = require("timezonecomplete");
 io = require('socket.io-client');
 irc = require('irc');
+gui = require('nw.gui');
 
+global.mainwin = gui.Window.get();
 global.config = require("./config.json")
 
 global.lastfollower = new tc.DateTime();
 global.followers = [];
 global.msgqueue = [];
+
+global.mainwin.on('loaded', function() {
+    while (global.config.items > 0) {
+	initAdd('u10');
+	global.config.items--;
+    }
+});
 
 function start_ircbot() {
 // Start the IRC Bot to listen for new subscribers
