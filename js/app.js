@@ -4,9 +4,29 @@ io = require('socket.io-client');
 irc = require('irc');
 gui = require('nw.gui');
 fs = require('fs');
+path = require('path');
+yaml = require('js-yaml');
 
 global.mainwin = gui.Window.get();
-global.config = require("./config.json")
+
+var confPath = path.join(gui.App.dataPath, "twitchtracker.yml");
+var logPath = path.join(gui.App.dataPath, "logs");
+
+try {
+  global.config = yaml.load(fs.readFileSync(confPath, 'utf-8'));
+} catch (err) {
+  fs.createReadStream(path.join(process.cwd(), "twitchtracker.yml")).pipe(fs.createWriteStream(confPath));
+  throw new Error("We have just coppied a default config to '" +confPath+"'. Please edit this file!");
+//  gui.App.quit(); 
+}
+
+if (global.config.configured == false) {
+    throw new Error("You need to edit the configuration file found at "+confPath);
+}
+
+if (!fs.existsSync(logPath)){
+    fs.mkdirSync(logPath);
+}
 
 global.lastfollower = new tc.DateTime();
 global.followers = [];
@@ -106,11 +126,13 @@ function updatemsg() {
 }
 
 function write_file(mesg) {
+    file = path.join(logPath, global.config.file);
+    console.log("Writing Stream file: " + file);
     global.filequeue.unshift(mesg);
     while (global.filequeue.length > global.config.items) {
 	global.filequeue.pop()
     }
-    var stream = fs.createWriteStream(global.config.file);
+    var stream = fs.createWriteStream(file);
     stream.once('open', function(fd) {
 	global.filequeue.forEach(function(mesg) {
 	    stream.write(mesg + "\n");
@@ -120,6 +142,7 @@ function write_file(mesg) {
     stream.on('error', function (err) {
 	console.log(err);
     });
+//    stream.close();
 }
 
 if (global.config.followers) {

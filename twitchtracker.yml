@@ -1,0 +1,11 @@
+configured: false
+user: Enter the twitch user here
+botname: Enter the twitch botname here
+token: Enter the bot's twitch OAUTH token here
+st_client_id: Enter Streamtip client id here
+st_access_token: Enter Streamtip access token here
+subs: true
+followers: true
+tips: true
+items: 2
+file: report.txt
