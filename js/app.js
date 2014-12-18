@@ -182,5 +182,5 @@ if (run) {
 	start_ircbot();
     }
 
-    setInterval(updatemsg, 5000);
+    setInterval(updatemsg, 2500);
 }

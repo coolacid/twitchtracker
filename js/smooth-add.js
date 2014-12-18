@@ -43,7 +43,7 @@ function smoothAdd(id, text)
 	el.animate({ height: h + heightDiff }, 1500)
 
 	first.animate({ top: 0 }, 250, function() {
-		first.animate({ marginTop: oldMarginTop }, 1000, function() {
+		first.animate({ marginTop: oldMarginTop }, 700, function() {
 			last.animate({ top: ulPaddingBottom }, 250, function() {
 				last.remove();
 

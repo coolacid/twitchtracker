@@ -15,6 +15,7 @@ st_client_id:
 st_access_token: 
 
 # What you want to watch. The following items can be set to true or false depending on what you want to watch. 
+# I do not recommed you watch for followers on popular streams, and followers can be missed!
 subs: true
 followers: true
 tips: true
