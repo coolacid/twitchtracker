@@ -11,8 +11,8 @@ token:
 
 # StreamTip configuration. TT connects to the StreamTip live feed to get time details. Enter your Client ID, and Access token bellow.
 # You can get these details from: https:#streamtip.com/account/billing
-st_client_id: Enter Streamtip client id here
-st_access_token: Enter Streamtip access token here
+st_client_id: 
+st_access_token: 
 
 # What you want to watch. The following items can be set to true or false depending on what you want to watch. 
 subs: true
