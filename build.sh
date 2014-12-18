@@ -6,8 +6,8 @@
 SPWD=$(pwd)
 SVERSION=$(grep version package.json | cut -d\" -f4)
 
-#npm install
-#grunt
+npm install
+grunt
 
 # Compress the Win64 package
 cd $SPWD/build/TwitchTracker/win64/
