@@ -3,6 +3,7 @@ tc = require("timezonecomplete");
 io = require('socket.io-client');
 irc = require('irc');
 gui = require('nw.gui');
+fs = require('fs');
 
 global.mainwin = gui.Window.get();
 global.config = require("./config.json")
@@ -10,11 +11,13 @@ global.config = require("./config.json")
 global.lastfollower = new tc.DateTime();
 global.followers = [];
 global.msgqueue = [];
+global.filequeue = [];
 
 global.mainwin.on('loaded', function() {
-    while (global.config.items > 0) {
+    items = global.config.items
+    while (items > 0) {
 	initAdd('u10');
-	global.config.items--;
+	items--;
     }
 });
 
@@ -98,7 +101,25 @@ function updatemsg() {
     if (global.msgqueue.length > 0) {
 	mesg = global.msgqueue.pop()
 	smoothAdd('u10', mesg);
+	write_file(mesg);
     }
+}
+
+function write_file(mesg) {
+    global.filequeue.unshift(mesg);
+    while (global.filequeue.length > global.config.items) {
+	global.filequeue.pop()
+    }
+    var stream = fs.createWriteStream(global.config.file);
+    stream.once('open', function(fd) {
+	global.filequeue.forEach(function(mesg) {
+	    stream.write(mesg + "\n");
+	});
+	stream.end();
+    });
+    stream.on('error', function (err) {
+	console.log(err);
+    });
 }
 
 if (global.config.followers) {

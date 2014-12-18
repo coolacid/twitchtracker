@@ -7,6 +7,6 @@
     "subs": true,
     "followers": true,
     "tips": true,
-    "items": 2
+    "items": 2,
+    "file": "./report.txt"
 }
-
