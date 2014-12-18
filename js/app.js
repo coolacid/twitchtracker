@@ -9,19 +9,23 @@ yaml = require('js-yaml');
 
 global.mainwin = gui.Window.get();
 
+run = false;
+
 var confPath = path.join(gui.App.dataPath, "twitchtracker.yml");
 var logPath = path.join(gui.App.dataPath, "logs");
 
 try {
   global.config = yaml.load(fs.readFileSync(confPath, 'utf-8'));
+  run = true;
 } catch (err) {
   fs.createReadStream(path.join(process.cwd(), "twitchtracker.yml")).pipe(fs.createWriteStream(confPath));
-  throw new Error("We have just coppied a default config to '" +confPath+"'. Please edit this file!");
-//  gui.App.quit(); 
+  show_error("Copied a default config to'" +confPath+"'. Please edit this file!");
 }
 
 if (global.config.configured == false) {
-    throw new Error("You need to edit the configuration file found at "+confPath);
+    show_error("Edit the configuration file found at "+confPath);
+} else {
+    run = true
 }
 
 if (!fs.existsSync(logPath)){
@@ -32,15 +36,6 @@ global.lastfollower = new tc.DateTime();
 global.followers = [];
 global.msgqueue = [];
 global.filequeue = [];
-
-global.mainwin.on('loaded', function() {
-    load_css();
-    items = global.config.items
-    while (items > 0) {
-	initAdd('u10');
-	items--;
-    }
-});
 
 function start_ircbot() {
 // Start the IRC Bot to listen for new subscribers
@@ -159,16 +154,33 @@ function load_css() {
     global.window.document.getElementsByTagName("head")[0].appendChild(fileref)
 }
 
-if (global.config.followers) {
-    setInterval(follower_poll, 30000);
+function show_error(mesg) {
+	// Bug in linux does not show alert! https://github.com/rogerwang/node-webkit/issues/2683
+	window.alert(mesg);
+	throw new Error(mesg);
 }
 
-if (global.config.tips) {
-    start_streamtip();
-}
+if (run) {
+    global.mainwin.on('loaded', function() {
+	load_css();
+	items = global.config.items
+	while (items > 0) {
+	    initAdd('u10');
+	    items--;
+	}
+    });
 
-if (global.config.subs) {
-    start_ircbot();
-}
+    if (global.config.followers & run) {
+	setInterval(follower_poll, 30000);
+    }
 
-setInterval(updatemsg, 5000);
+    if (global.config.tips & run) {
+	start_streamtip();
+    }
+
+    if (global.config.subs & run) {
+	start_ircbot();
+    }
+
+    setInterval(updatemsg, 5000);
+}
