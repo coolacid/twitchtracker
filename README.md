@@ -3,6 +3,18 @@ TwitchTracker
 
 This is a node-webkit application to monitor and provide twitch notifications.
 
+To Run:
+- Download a ZIP package
+- Run the first time, it will create an empty configuration file
+- Edit the configuration file with a text editor - following all instructions in the file
+- Run a second time
+- Profit!
+
+Configuration/Data files are found in:
+- Windows: %LOCALAPPDATA%/TwitchTracker/
+- Linux: ~/.config/TwitchTracker/
+- OSX: ~/Library/Application Support/TwitchTracker/
+
 To start from source:
 - Install node, npm, and node-webkit for your platform
 - Download the software
