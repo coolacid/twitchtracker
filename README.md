@@ -1,7 +1,9 @@
 TwitchTracker
 =============
 
-This is a node-webkit application to monitor and provide twitch notifications.
+This is a node-webkit application to monitor and provide twitch notifications. 
+
+Currently, this has two options, a scrolling window and write the events to a text file.
 
 To Run:
 - Download a ZIP package
