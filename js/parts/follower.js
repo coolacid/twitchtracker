@@ -5,7 +5,9 @@ global.lastfollower = new tc.DateTime();
 global.followers = [];
 
 function follower_poll() {
-    var url = 'https://api.twitch.tv/kraken/channels/' + global.config['user'] + '/follows/?limit=10';
+    var url = 'https://api.twitch.tv/kraken/channels/' + global.config['user'] + '/follows/?limit=' + global.config.followers.query;
+
+console.log(url)
 
     http.get(url, function(res) {
 	var body = '';

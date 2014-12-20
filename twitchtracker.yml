@@ -31,3 +31,4 @@ streamtip:
 # I do not recommed you watch for followers on popular streams, and followers can be missed!
 followers:
     active: true
+    query: 10
