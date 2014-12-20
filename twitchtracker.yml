@@ -1,30 +1,33 @@
 # Welcome to TwitchTracker - this is the configureation file. 
 
 # Set your twitch username here! This is used to monitor the followers, and which chat channel to connect too.
-user: 
-
-# Chatbot configuration. TT will sit in your chat channel to listen for subscriber notifications. Set the following
-# to the bots username and OAUTH token. This does NOT need to be a bot, it can be you're own account too.
-# You can get an OAUTH token from: http:#www.twitchapps.com/tmi/
-botname:
-token:
-
-# StreamTip configuration. TT connects to the StreamTip live feed to get time details. Enter your Client ID, and Access token bellow.
-# You can get these details from: https:#streamtip.com/account/billing
-st_client_id: 
-st_access_token: 
-
-# What you want to watch. The following items can be set to true or false depending on what you want to watch. 
-# I do not recommed you watch for followers on popular streams, and followers can be missed!
-subs: true
-followers: true
-tips: true
+user:
 
 # How many items you want to display and write to the text file.
-items: 2
+items: 10
 
 # Text file name found in the logs directory where you found this file!
 file: report.txt
 
 # Set this to TRUE when you have configured bellow
-configured: false  
+configured: true
+
+# Chatbot configuration. TT will sit in your chat channel to listen for subscriber notifications. Set the following
+# to the bots username and OAUTH token. This does NOT need to be a bot, it can be you're own account too.
+# You can get an OAUTH token from: http:#www.twitchapps.com/tmi/
+subs:
+    active: false
+    botname:
+    token:
+
+# StreamTip configuration. TT connects to the StreamTip live feed to get time details. Enter your Client ID, and Access token bellow.
+# You can get these details from: https:#streamtip.com/account/billing
+streamtip:
+    active: false
+    client_id:
+    access_token:
+
+# What you want to watch. The following items can be set to true or false depending on what you want to watch. 
+# I do not recommed you watch for followers on popular streams, and followers can be missed!
+followers:
+    active: true

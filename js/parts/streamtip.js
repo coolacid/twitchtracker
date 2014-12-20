@@ -2,7 +2,7 @@ io = require('socket.io-client');
 
 function start_streamtip() {
     var socket = io.connect('https://streamtip.com', {
-        query: 'client_id='+encodeURIComponent(global.config['st_client_id'])+'&access_token='+encodeURIComponent(global.config['st_access_token'])
+        query: 'client_id='+encodeURIComponent(global.config.streamtip.client_id)+'&access_token='+encodeURIComponent(global.config.streamtip.access_token)
     });
 
     socket.on('authenticated', function() {

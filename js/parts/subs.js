@@ -2,10 +2,10 @@ irc = require('irc');
 
 function start_ircbot() {
 // Start the IRC Bot to listen for new subscribers
-    var bot = new irc.Client('irc.twitch.tv', global.config['botname'], {
+    var bot = new irc.Client('irc.twitch.tv', global.config.subs.botname, {
 	debug: true,
 	channels: ["#" + global.config['user']],
-	password: global.config['token']
+	password: global.config.subs.token
     });
 
     bot.addListener('error', function(message) {

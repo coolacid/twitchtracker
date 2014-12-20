@@ -3,7 +3,6 @@ fs = require('fs');
 path = require('path');
 yaml = require('js-yaml');
 
-
 global.mainwin = gui.Window.get();
 
 global.msgqueue = [];
@@ -89,17 +88,17 @@ if (run) {
 	}
     });
 
-    if (global.config.followers & run) {
+    if (global.config.followers.active & run) {
 	follower = require('./js/parts/follower.js');
 	follower.start()
     }
 
-    if (global.config.tips & run) {
+    if (global.config.streamtip.active & run) {
 	streamtip = require('./js/parts/streamtip.js');
 	streamtip.start()
     }
 
-    if (global.config.subs & run) {
+    if (global.config.subs.active & run) {
 	subs = require('./js/parts/subs.js');
 	subs.start()
     }
