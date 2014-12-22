@@ -8,7 +8,6 @@ global.mainwin = gui.Window.get();
 global.msgqueue = [];
 global.filequeue = [];
 global.inputs = {};
-inputs = {};
 
 run = false;
 
@@ -97,20 +96,24 @@ if (run) {
 	}
     });
 
-    if (global.config.followers.active & run) {
+    if (global.config.followers.active) {
 	global.inputs['follower'] = require('./js/parts/follower.js');
 	global.inputs['follower'].start()
     }
 
-    if (global.config.streamtip.active & run) {
+    if (global.config.streamtip.active) {
 	global.inputs['streamtip'] = require('./js/parts/streamtip.js');
 	global.inputs['streamtip'].start()
     }
 
-    if (global.config.subs.active & run) {
+    if (global.config.subs.active) {
+	global.inputs['subs'] = require('./js/parts/subs.js');
+	global.inputs['subs'].start();
+    }
+
+    if (global.useirc) {
 	global.inputs.irc = require('./js/parts/irc.js');
 	global.inputs.irc.start()
-	global.inputs['subs'] = require('./js/parts/subs.js');
     }
 
     console.log(Object.keys(global.inputs).length);

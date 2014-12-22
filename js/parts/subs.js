@@ -12,6 +12,7 @@ function handle_irc(from, message){
 
 module.exports = {
     start: function() {
+	global.useirc = true;
 	console.log('Started Subs');
     },
     irc_receiver: function (from, message) {
