@@ -7,8 +7,6 @@ global.followers = [];
 function follower_poll() {
     var url = 'https://api.twitch.tv/kraken/channels/' + global.config['user'] + '/follows/?limit=' + global.config.followers.query;
 
-console.log(url)
-
     http.get(url, function(res) {
 	var body = '';
 

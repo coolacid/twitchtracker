@@ -109,7 +109,6 @@ if (run) {
 	global.inputs.irc = require('./js/parts/irc.js');
 	global.inputs.irc.start()
 	global.inputs['subs'] = require('./js/parts/subs.js');
-//	global.inputs['subs']start()
     }
 
     console.log(Object.keys(global.inputs).length);
