@@ -7,6 +7,8 @@ global.mainwin = gui.Window.get();
 
 global.msgqueue = [];
 global.filequeue = [];
+global.inputs = {};
+inputs = {};
 
 run = false;
 
@@ -30,6 +32,7 @@ if (global.config.configured == false) {
 if (!fs.existsSync(logPath)){
     fs.mkdirSync(logPath);
 }
+
 
 function updatemsg() {
     if (global.msgqueue.length > 0) {
@@ -78,6 +81,10 @@ function show_error(mesg) {
 	throw new Error(mesg);
 }
 
+global.irc_received = function (from, message) {
+    console.log(from, message);
+}
+
 if (run) {
     global.mainwin.on('loaded', function() {
 	load_css();
@@ -89,19 +96,24 @@ if (run) {
     });
 
     if (global.config.followers.active & run) {
-	follower = require('./js/parts/follower.js');
-	follower.start()
+	global.inputs['follower'] = require('./js/parts/follower.js');
+	global.inputs['follower'].start()
     }
 
     if (global.config.streamtip.active & run) {
-	streamtip = require('./js/parts/streamtip.js');
-	streamtip.start()
+	global.inputs['streamtip'] = require('./js/parts/streamtip.js');
+	global.inputs['streamtip'].start()
     }
 
     if (global.config.subs.active & run) {
-	subs = require('./js/parts/subs.js');
-	subs.start()
+	global.inputs.irc = require('./js/parts/irc.js');
+	global.inputs.irc.start()
+	global.inputs['subs'] = require('./js/parts/subs.js');
+//	global.inputs['subs']start()
     }
+
+    console.log(Object.keys(global.inputs).length);
 
     setInterval(updatemsg, 2500);
 }
+
