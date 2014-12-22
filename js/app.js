@@ -14,12 +14,16 @@ run = false;
 var confPath = path.join(gui.App.dataPath, "twitchtracker.yml");
 var logPath = path.join(gui.App.dataPath, "logs");
 
+if (!fs.existsSync(confPath)) {
+  fs.createReadStream(path.join(process.cwd(), "twitchtracker.yml")).pipe(fs.createWriteStream(confPath));
+  show_error("Copied a default config to'" +confPath+"'. Please edit this file!");
+}
+
 try {
   global.config = yaml.load(fs.readFileSync(confPath, 'utf-8'));
   run = true;
 } catch (err) {
-  fs.createReadStream(path.join(process.cwd(), "twitchtracker.yml")).pipe(fs.createWriteStream(confPath));
-  show_error("Copied a default config to'" +confPath+"'. Please edit this file!");
+  show_error("There was an error in your configuration file! " + err);
 }
 
 if (global.config.configured == false) {
@@ -115,8 +119,6 @@ if (run) {
 	global.inputs.irc = require('./js/parts/irc.js');
 	global.inputs.irc.start()
     }
-
-    console.log(Object.keys(global.inputs).length);
 
     setInterval(updatemsg, 2500);
 }
