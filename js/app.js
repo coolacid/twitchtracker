@@ -33,6 +33,8 @@ if (!fs.existsSync(logPath)){
     fs.mkdirSync(logPath);
 }
 
+// Force the username lowercase
+global.config['user'] = global.config['user'].toLowerCase();
 
 function updatemsg() {
     if (global.msgqueue.length > 0) {
