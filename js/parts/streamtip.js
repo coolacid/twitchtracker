@@ -23,7 +23,13 @@ function start_streamtip() {
 }
 
 module.exports = {
-    start: function() {
+    start: function start() {
+	console.log("Starting Streamtip");
 	start_streamtip();
+    }, 
+    init: function init() {
+	if (!global.config.streamtip.client_id) return false
+	if (!global.config.streamtip.access_token) return false
+	return true;
     }
 };

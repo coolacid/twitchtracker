@@ -90,6 +90,15 @@ global.irc_received = function (from, message) {
     console.log(from, message);
 }
 
+function load_plugin(plugin) {
+    global.inputs[plugin] = require('./js/parts/' + plugin + '.js');
+    if (global.inputs[plugin].init()) {
+        global.inputs[plugin].start()
+    } else {
+        console.log("There was an error initiallizing " + plugin);
+    }
+}
+
 if (run) {
     global.mainwin.on('loaded', function() {
 	load_css();
@@ -101,23 +110,21 @@ if (run) {
     });
 
     if (global.config.followers.active) {
-	global.inputs['follower'] = require('./js/parts/follower.js');
-	global.inputs['follower'].start()
+	load_plugin('follower');
     }
 
     if (global.config.streamtip.active) {
-	global.inputs['streamtip'] = require('./js/parts/streamtip.js');
-	global.inputs['streamtip'].start()
+	load_plugin('streamtip');
     }
 
     if (global.config.subs.active) {
-	global.inputs['subs'] = require('./js/parts/subs.js');
-	global.inputs['subs'].start();
+	load_plugin('subs');
     }
 
     if (global.useirc) {
-	global.inputs.irc = require('./js/parts/irc.js');
-	global.inputs.irc.start()
+	load_plugin('irc');
+//	global.inputs.irc = require('./js/parts/irc.js');
+//	global.inputs.irc.start()
     }
 
     setInterval(updatemsg, 2500);

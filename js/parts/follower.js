@@ -37,8 +37,17 @@ function follower_handle(follows) {
 }
 
 module.exports = {
-    start: function() {
+    start: function start() {
+	console.log("Started Followers with query: " + global.config.followers.query);
 	setInterval(follower_poll, 30000);
+    },
+    init: function init() {
+	// Should have query set to int, default 10
+	if (isNaN(global.config.followers.query)) { 
+	    global.config.followers.query = 10
+	}
+	return true
     }
+
 };
 

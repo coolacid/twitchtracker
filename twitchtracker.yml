@@ -12,13 +12,17 @@ file: report.txt
 # Set this to TRUE when you have configured bellow
 configured: true
 
-# Chatbot configuration. TT will sit in your chat channel to listen for subscriber notifications. Set the following
+# Chatbot configuration. TT will sit in your chat channel to listen for notifications. Set the following
 # to the bots username and OAUTH token. This does NOT need to be a bot, it can be you're own account too.
 # You can get an OAUTH token from: http:#www.twitchapps.com/tmi/
-subs:
-    active: false
+irc:
     botname:
     token:
+
+# Subs notification. Handle Subs notification from the IRC Chatbot config above.
+subs:
+    active: false
+
 
 # StreamTip configuration. TT connects to the StreamTip live feed to get time details. Enter your Client ID, and Access token bellow.
 # You can get these details from: https:#streamtip.com/account/billing
