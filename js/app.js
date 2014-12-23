@@ -2,6 +2,7 @@ gui = require('nw.gui');
 fs = require('fs');
 path = require('path');
 yaml = require('js-yaml');
+os = require('os');
 
 global.mainwin = gui.Window.get();
 
@@ -57,7 +58,7 @@ function write_file(mesg) {
     var stream = fs.createWriteStream(file);
     stream.once('open', function(fd) {
 	global.filequeue.forEach(function(mesg) {
-	    stream.write(mesg + "\n");
+	    stream.write(mesg + os.EOL);
 	});
 	stream.end();
     });
