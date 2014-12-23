@@ -12,24 +12,22 @@ file: report.txt
 # Set this to TRUE when you have configured bellow
 configured: true
 
-# Chatbot configuration. TT will sit in your chat channel to listen for notifications. Set the following
+# Chatbot configuration. TT will sit in your chat channel to listen for subscriber notifications. Set the following
 # to the bots username and OAUTH token. This does NOT need to be a bot, it can be you're own account too.
 # You can get an OAUTH token from: http:#www.twitchapps.com/tmi/
-irc:
+subs:
+    active: false
     botname:
     token:
 
-# Subs notification. Handle Subs notification from the IRC Chatbot config above.
-subs:
-    active: false
-
-
 # StreamTip configuration. TT connects to the StreamTip live feed to get time details. Enter your Client ID, and Access token bellow.
 # You can get these details from: https:#streamtip.com/account/billing
+# Define your text: %USER% is the users name, %AMOUNT% is the amount
 streamtip:
     active: false
     client_id:
     access_token:
+    text: Just got %AMOUNT% from %USER%!
 
 # What you want to watch. The following items can be set to true or false depending on what you want to watch. 
 # I do not recommed you watch for followers on popular streams, and followers can be missed!

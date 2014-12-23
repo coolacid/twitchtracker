@@ -18,7 +18,10 @@ function start_streamtip() {
     socket.on('newTip', function (data) {
         // We got a new tip!
         console.log(data);
-        global.msgqueue.unshift(data.username + " just tipped " + data.amount + "!");
+	text = global.config.streamtip.text;
+	text = text.replace("%USER%", data.username);
+	text = text.replace("%AMOUNT%", data.amount);
+        global.msgqueue.unshift(text);
     });
 }
 
@@ -30,6 +33,9 @@ module.exports = {
     init: function init() {
 	if (!global.config.streamtip.client_id) return false
 	if (!global.config.streamtip.access_token) return false
+	if (!global.config.streamtip.text) {
+	    global.config.streamtip.text = "%USER% just tipped %AMOUNT%";
+	}
 	return true;
     }
 };
