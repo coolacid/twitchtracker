@@ -3,11 +3,6 @@ function handle_irc(from, message){
 	global.msgqueue.unshift(message);
 	console.log('Got: %s', message);
     }
-    if ( from.match(/^coolacid$/) ) {
-	global.msgqueue.unshift(message);
-	console.log('Got: %s', message);
-    }
-
 }
 
 module.exports = {
