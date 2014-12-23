@@ -33,6 +33,7 @@ if (global.config.configured == false) {
     run = true
 }
 
+// Make the logs directory if it doesn't exist
 if (!fs.existsSync(logPath)){
     fs.mkdirSync(logPath);
 }
@@ -42,9 +43,9 @@ global.config['user'] = global.config['user'].toLowerCase();
 
 function updatemsg() {
     if (global.msgqueue.length > 0) {
-	mesg = global.msgqueue.pop()
-	smoothAdd('u10', mesg);
-	write_file(mesg);
+        mesg = global.msgqueue.pop()
+        smoothAdd('u10', mesg);
+        write_file(mesg);
     }
 }
 
@@ -53,26 +54,25 @@ function write_file(mesg) {
     console.log("Writing Stream file: " + file);
     global.filequeue.unshift(mesg);
     while (global.filequeue.length > global.config.items) {
-	global.filequeue.pop()
+        global.filequeue.pop()
     }
     var stream = fs.createWriteStream(file);
     stream.once('open', function(fd) {
-	global.filequeue.forEach(function(mesg) {
-	    stream.write(mesg + os.EOL);
-	});
-	stream.end();
+        global.filequeue.forEach(function(mesg) {
+            stream.write(mesg + os.EOL);
+        });
+        stream.end();
     });
     stream.on('error', function (err) {
-	console.log(err);
+        console.log(err);
     });
-//    stream.close();
 }
 
 function load_css() {
     if (fs.existsSync(path.join(gui.App.dataPath, "ui.css"))) {
-	filename = path.join(gui.App.dataPath, "ui.css");
+        filename = path.join(gui.App.dataPath, "ui.css");
     } else {
-	filename = path.join(process.cwd(), "css", "ui.css");
+        filename = path.join(process.cwd(), "css", "ui.css");
     }
     var fileref=document.createElement("link")
     fileref.setAttribute("rel", "stylesheet")
@@ -82,13 +82,9 @@ function load_css() {
 }
 
 function show_error(mesg) {
-	// Bug in linux does not show alert! https://github.com/rogerwang/node-webkit/issues/2683
-	window.alert(mesg);
-	throw new Error(mesg);
-}
-
-global.irc_received = function (from, message) {
-    console.log(from, message);
+        // Bug in linux does not show alert! https://github.com/rogerwang/node-webkit/issues/2683
+        window.alert(mesg);
+        throw new Error(mesg);
 }
 
 function load_plugin(plugin) {
@@ -102,30 +98,28 @@ function load_plugin(plugin) {
 
 if (run) {
     global.mainwin.on('loaded', function() {
-	load_css();
-	items = global.config.items
-	while (items > 0) {
-	    initAdd('u10');
-	    items--;
-	}
+        load_css();
+        items = global.config.items
+        while (items > 0) {
+            initAdd('u10');
+            items--;
+        }
     });
 
     if (global.config.followers.active) {
-	load_plugin('follower');
+        load_plugin('follower');
     }
 
     if (global.config.streamtip.active) {
-	load_plugin('streamtip');
+        load_plugin('streamtip');
     }
 
     if (global.config.subs.active) {
-	load_plugin('subs');
+        load_plugin('subs');
     }
 
     if (global.useirc) {
-	load_plugin('irc');
-//	global.inputs.irc = require('./js/parts/irc.js');
-//	global.inputs.irc.start()
+        load_plugin('irc');
     }
 
     setInterval(updatemsg, 2500);

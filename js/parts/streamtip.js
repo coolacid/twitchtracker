@@ -6,20 +6,20 @@ function start_streamtip() {
     });
 
     socket.on('authenticated', function() {
-        console.log('authenticated');
+        console.log('Streamtip: authenticated');
     });
 
     socket.on('error', function(err) {
         if(err === '401::Access Denied::') {
-            console.log('authentication failed');
+            console.log('Streamtip: authentication failed');
         }
     });
 
     socket.on('newTip', function (data) {
         // We got a new tip!
-	text = global.config.streamtip.text;
-	text = text.replace("$USER", data.username);
-	text = text.replace("$AMOUNT", data.amount);
+        text = global.config.streamtip.text;
+        text = text.replace("$USER", data.username);
+        text = text.replace("$AMOUNT", data.amount);
         console.log(text);
         global.msgqueue.unshift(text);
     });
@@ -27,15 +27,15 @@ function start_streamtip() {
 
 module.exports = {
     start: function start() {
-	console.log("Starting Streamtip");
-	start_streamtip();
+        console.log("Starting Streamtip");
+        start_streamtip();
     }, 
     init: function init() {
-	if (!global.config.streamtip.client_id) return false
-	if (!global.config.streamtip.access_token) return false
-	if (!global.config.streamtip.text) {
-	    global.config.streamtip.text = "$USER just tipped $AMOUNT";
-	}
-	return true;
+        if (!global.config.streamtip.client_id) return false
+        if (!global.config.streamtip.access_token) return false
+        if (!global.config.streamtip.text) {
+            global.config.streamtip.text = "$USER just tipped $AMOUNT";
+        }
+        return true;
     }
 };
