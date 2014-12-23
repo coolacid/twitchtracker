@@ -27,8 +27,10 @@ function follower_handle(follows) {
 	follows.forEach(function(follow) {
 	    followtime = new tc.DateTime(follow.created_at)
 	    if (followtime.greaterThan(global.lastfollower) & global.followers.indexOf(follow.user.name) < 0) {
-		console.log("New Follower: ", follow.user.name);
-		global.msgqueue.unshift(follow.user.name + " followed!");
+		text = global.config.followers.text;
+		text = text.replace("$USER", follow.user.name);
+		console.log(text);
+		global.msgqueue.unshift(text);
 		global.followers.push(follow.user.name);
 	    }
 	});
@@ -46,6 +48,9 @@ module.exports = {
 	if (isNaN(global.config.followers.query)) { 
 	    global.config.followers.query = 10
 	}
+        if (!global.config.followers.text) {
+            global.config.followers.text = "%USER% just followed!";
+        }
 	return true
     }
 

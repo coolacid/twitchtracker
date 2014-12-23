@@ -17,10 +17,10 @@ function start_streamtip() {
 
     socket.on('newTip', function (data) {
         // We got a new tip!
-        console.log(data);
 	text = global.config.streamtip.text;
-	text = text.replace("%USER%", data.username);
-	text = text.replace("%AMOUNT%", data.amount);
+	text = text.replace("$USER", data.username);
+	text = text.replace("$AMOUNT", data.amount);
+        console.log(text);
         global.msgqueue.unshift(text);
     });
 }
