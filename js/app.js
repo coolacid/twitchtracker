@@ -16,15 +16,15 @@ var confPath = path.join(gui.App.dataPath, "twitchtracker.yml");
 var logPath = path.join(gui.App.dataPath, "logs");
 
 if (!fs.existsSync(confPath)) {
-  fs.createReadStream(path.join(process.cwd(), "twitchtracker.yml")).pipe(fs.createWriteStream(confPath));
-  show_error("Copied a default config to'" +confPath+"'. Please edit this file!");
+    fs.createReadStream(path.join(process.cwd(), "twitchtracker.yml")).pipe(fs.createWriteStream(confPath));
+    show_error("Copied a default config to'" +confPath+"'. Please edit this file!");
 }
 
 try {
-  global.config = yaml.load(fs.readFileSync(confPath, 'utf-8'));
-  run = true;
+    global.config = yaml.load(fs.readFileSync(confPath, 'utf-8'));
+    run = true;
 } catch (err) {
-  show_error("There was an error in your configuration file! " + err);
+    show_error("There was an error in your configuration file! " + err);
 }
 
 if (global.config.configured == false) {
@@ -82,9 +82,9 @@ function load_css() {
 }
 
 function show_error(mesg) {
-        // Bug in linux does not show alert! https://github.com/rogerwang/node-webkit/issues/2683
-        window.alert(mesg);
-        throw new Error(mesg);
+    // Bug in linux does not show alert! https://github.com/rogerwang/node-webkit/issues/2683
+    window.alert(mesg);
+    throw new Error(mesg);
 }
 
 function load_plugin(plugin) {
@@ -124,4 +124,3 @@ if (run) {
 
     setInterval(updatemsg, 2500);
 }
-

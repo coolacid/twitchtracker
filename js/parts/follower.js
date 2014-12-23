@@ -24,18 +24,18 @@ function follower_poll() {
 }
 
 function follower_handle(follows) {
-        follows.forEach(function(follow) {
-            followtime = new tc.DateTime(follow.created_at)
-            if (followtime.greaterThan(global.lastfollower) & global.followers.indexOf(follow.user.name) < 0) {
-                text = global.config.followers.text;
-                text = text.replace("$USER", follow.user.name);
-                console.log(text);
-                global.msgqueue.unshift(text);
-                global.followers.push(follow.user.name);
-            }
-        });
-        global.lastfollower = new tc.DateTime(follows[0].created_at);
-        console.log(follows[0].created_at)
+    follows.forEach(function(follow) {
+        followtime = new tc.DateTime(follow.created_at)
+        if (followtime.greaterThan(global.lastfollower) & global.followers.indexOf(follow.user.name) < 0) {
+            text = global.config.followers.text;
+            text = text.replace("$USER", follow.user.name);
+            console.log(text);
+            global.msgqueue.unshift(text);
+            global.followers.push(follow.user.name);
+        }
+    });
+    global.lastfollower = new tc.DateTime(follows[0].created_at);
+    console.log(follows[0].created_at)
 }
 
 module.exports = {
