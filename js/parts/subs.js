@@ -1,7 +1,10 @@
 function handle_irc(from, message){
     if ( from.match(/^twitchnotify$/) ) {
-	global.msgqueue.unshift(message);
-	console.log('Got: %s', message);
+	user = message.split(" ")[0]
+	text = global.config.subs.text;
+	text = text.replace("$USER", user);
+	console.log(text);
+	global.msgqueue.unshift(text);
     }
 }
 
@@ -11,6 +14,9 @@ module.exports = {
     },
     init: function init() {
 	global.useirc = true;
+        if (!global.config.subs.text) {
+            global.config.subs.text = "$USER just subscribed!";
+        }
 	return true;
     },
     irc_receiver: function (from, message) {

@@ -1,7 +1,7 @@
 # Welcome to TwitchTracker - this is the configureation file. 
 
 # Set your twitch username here! This is used to monitor the followers, and which chat channel to connect too.
-user:
+user: 
 
 # How many items you want to display and write to the text file.
 items: 10
@@ -17,20 +17,24 @@ configured: true
 # You can get an OAUTH token from: http:#www.twitchapps.com/tmi/
 subs:
     active: false
-    botname:
-    token:
+    text: $USER just subscribed
+
+irc:
+    botname: 
+    token: 
+    debug: true
 
 # StreamTip configuration. TT connects to the StreamTip live feed to get time details. Enter your Client ID, and Access token bellow.
 # You can get these details from: https:#streamtip.com/account/billing
-# Define your text: %USER% is the users name, %AMOUNT% is the amount
 streamtip:
     active: false
-    client_id:
-    access_token:
-    text: Just got %AMOUNT% from %USER%!
+    client_id: 
+    access_token: 
+    text: Just got $AMOUNT from $USER!
 
 # What you want to watch. The following items can be set to true or false depending on what you want to watch. 
 # I do not recommed you watch for followers on popular streams, and followers can be missed!
 followers:
     active: true
     query: 10
+    text: $USER just followed!
