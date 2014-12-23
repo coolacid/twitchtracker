@@ -34,7 +34,7 @@ module.exports = {
 	if (!global.config.streamtip.client_id) return false
 	if (!global.config.streamtip.access_token) return false
 	if (!global.config.streamtip.text) {
-	    global.config.streamtip.text = "%USER% just tipped %AMOUNT%";
+	    global.config.streamtip.text = "$USER just tipped $AMOUNT";
 	}
 	return true;
     }

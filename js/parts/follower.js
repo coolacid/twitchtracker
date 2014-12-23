@@ -49,7 +49,7 @@ module.exports = {
 	    global.config.followers.query = 10
 	}
         if (!global.config.followers.text) {
-            global.config.followers.text = "%USER% just followed!";
+            global.config.followers.text = "$USER just followed!";
         }
 	return true
     }
