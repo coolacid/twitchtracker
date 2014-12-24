@@ -40,3 +40,10 @@ Chroma Key
 ==========
 
 If you want to play with chroma key, there is an example ui-chroma.css file in the css directory. Just rename the file to ui.css and place in the same directory as your twitchtracker.yml configuration file.
+
+Tip Jar
+=======
+
+You can find my tip jar at: 
+https://gist.github.com/coolacid/9537573
+
