@@ -27,15 +27,19 @@ try {
     show_error("There was an error in your configuration file! " + err);
 }
 
-if (global.config.configured == false) {
-    show_error("Edit the configuration file found at "+confPath);
-} else {
-    run = true
-}
+//if (global.config.configured == false) {
+//    show_error("Edit the configuration file found at "+confPath);
+//} else {
+//    run = true
+//}
 
 // Make the logs directory if it doesn't exist
 if (!fs.existsSync(logPath)){
     fs.mkdirSync(logPath);
+}
+
+if (!global.config['user']) {
+    show_error("You need to set the twitch username");
 }
 
 // Force the username lowercase
