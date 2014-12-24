@@ -10,8 +10,6 @@ global.msgqueue = [];
 global.filequeue = [];
 global.inputs = {};
 
-run = false;
-
 var confPath = path.join(gui.App.dataPath, "twitchtracker.yml");
 var logPath = path.join(gui.App.dataPath, "logs");
 
@@ -22,24 +20,28 @@ if (!fs.existsSync(confPath)) {
 
 try {
     global.config = yaml.load(fs.readFileSync(confPath, 'utf-8'));
-    run = true;
 } catch (err) {
     show_error("There was an error in your configuration file! " + err);
 }
 
-//if (global.config.configured == false) {
-//    show_error("Edit the configuration file found at "+confPath);
-//} else {
-//    run = true
-//}
 
 // Make the logs directory if it doesn't exist
 if (!fs.existsSync(logPath)){
     fs.mkdirSync(logPath);
 }
 
+
+// Check the main configuration items
 if (!global.config['user']) {
     show_error("You need to set the twitch username");
+}
+
+if (!global.config.file) {
+    global.config.file = "report.txt";
+}
+
+if (isNaN(global.config.items)) {
+    global.config.items = 10;
 }
 
 // Force the username lowercase
@@ -100,31 +102,31 @@ function load_plugin(plugin) {
     }
 }
 
-if (run) {
-    global.mainwin.on('loaded', function() {
-        load_css();
-        items = global.config.items
-        while (items > 0) {
-            initAdd('u10');
-            items--;
-        }
-    });
 
-    if (global.config.followers.active) {
-        load_plugin('follower');
+// Main Start
+global.mainwin.on('loaded', function() {
+    load_css();
+    items = global.config.items
+    while (items > 0) {
+        initAdd('u10');
+        items--;
     }
+});
 
-    if (global.config.streamtip.active) {
-        load_plugin('streamtip');
-    }
-
-    if (global.config.subs.active) {
-        load_plugin('subs');
-    }
-
-    if (global.useirc) {
-        load_plugin('irc');
-    }
-
-    setInterval(updatemsg, 2500);
+if (global.config.followers.active) {
+    load_plugin('follower');
 }
+
+if (global.config.streamtip.active) {
+    load_plugin('streamtip');
+}
+
+if (global.config.subs.active) {
+    load_plugin('subs');
+}
+
+if (global.useirc) {
+    load_plugin('irc');
+}
+
+setInterval(updatemsg, 2500);

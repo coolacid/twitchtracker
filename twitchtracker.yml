@@ -9,9 +9,6 @@ items: 10
 # Text file name found in the logs directory where you found this file!
 file: report.txt
 
-# Set this to TRUE when you have configured bellow
-configured: true
-
 # Chatbot configuration. TT will sit in your chat channel to listen for subscriber notifications. Set the following
 # to the bots username and OAUTH token. This does NOT need to be a bot, it can be you're own account too.
 # You can get an OAUTH token from: http:#www.twitchapps.com/tmi/
