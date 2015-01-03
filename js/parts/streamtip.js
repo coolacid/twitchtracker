@@ -30,6 +30,13 @@ module.exports = {
         console.log("Starting Streamtip");
         start_streamtip();
     }, 
+    config: { "description": "Connect to streamtip and watch for new tips",
+              "options": {
+                  "client_id": {"description": "The streamtip client ID.", "type": "string"},
+                  "access_token": {"description": "The streamtip token", "type": "string"},
+		  "text": {"description": "The text to display. $USER is the user, $AMOUNT is the amount.", "type": "string"}
+              }
+    },
     init: function init() {
         if (!global.config.streamtip.client_id) return false
         if (!global.config.streamtip.access_token) return false

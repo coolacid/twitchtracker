@@ -12,6 +12,11 @@ module.exports = {
     start: function start() {
         console.log('Started Subs');
     },
+    config: { "description": "Display a message when a new sub is detected.",
+              "options": {
+                  "text": {"description": "The message to display. $USER is the username. (Default: $USER just subscribed)", "type": "string"}
+              }
+    },
     init: function init() {
         global.useirc = true;
         if (!global.config.subs.text) {

@@ -43,6 +43,12 @@ module.exports = {
         console.log("Started Followers with query: " + global.config.followers.query);
         setInterval(follower_poll, 30000);
     },
+    config: { "description": "Query Twitch API for new followers", 
+	      "options": {
+		  "query": {"description": "The number of last followers to query from twitch. (Default 10)", "type": "number"},
+		  "text": {"description": "Text returned on new follower. $USER is the username. (Default $USER just followed!", "type": "string"}
+	      }
+    },
     init: function init() {
         // Should have query set to int, default 10
         if (isNaN(global.config.followers.query)) { 

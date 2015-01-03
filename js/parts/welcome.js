@@ -10,7 +10,12 @@ function handle_irc(from, message){
 
 module.exports = {
     start: function start() {
-        console.log('Started Subs');
+        console.log('Started welcome');
+    },
+    config: { "description": "Option to welcome new subscribers.",
+              "options": {
+                  "text": {"description": "The text for the bot to say. $USER is the username. (Default: Welcome $USER!)", "type": "string"}
+              }
     },
     init: function init() {
         global.useirc = true;

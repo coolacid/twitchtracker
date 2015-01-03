@@ -1,8 +1,9 @@
 irc = require('irc');
+var bot;
 
 function start_ircbot() {
     // Start the IRC Bot to listen for new subscribers
-    var bot = new irc.Client('irc.twitch.tv', global.config.irc.botname, {
+    bot = new irc.Client('irc.twitch.tv', global.config.irc.botname, {
         debug: global.config.irc.debug,
         channels: ["#" + global.config['user']],
         password: global.config.irc.token
@@ -24,9 +25,22 @@ function start_ircbot() {
     });
 }
 
+function say_ircbot(message) {
+    bot.say("#" + global.config['user'], message);
+}
+
 module.exports = {
     start: function start() {
         start_ircbot();
+    },
+    config: { "description": "Query Twitch API for new followers",
+              "options": {
+                  "botname": {"description": "The username for the bot.", "type": "string"},
+                  "token": {"description": "The token or password for the bot.", "type": "string"}
+              }
+    },
+    say: function say(message) {
+	say_ircbot(message);
     },
     init: function init() {
         if (!global.config.irc.botname) return false;
