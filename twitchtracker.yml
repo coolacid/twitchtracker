@@ -35,3 +35,8 @@ followers:
     active: true
     query: 10
     text: $USER just followed!
+
+# Welcome new subscribers!
+welcome:
+    active: true
+    text: AwwwYeah $USER <3!

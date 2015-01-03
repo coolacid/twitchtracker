@@ -125,6 +125,10 @@ if (global.config.subs.active) {
     load_plugin('subs');
 }
 
+if (global.config.welcome.active) {
+    load_plugin('welcome');
+}
+
 if (global.useirc) {
     load_plugin('irc');
 }
