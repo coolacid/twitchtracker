@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+	var gui = require('nw.gui');
+	var win = gui.Window.get();
+	function addline() {
+	    console.log(typeof global.mainwin);
+	    global.mainwin.window.smoothAdd('u10', 'text')
+	}
+    </script>
+  </head>
+  <body>
+    <input type=submit onclick="addline();">
+  </body>
+</html>

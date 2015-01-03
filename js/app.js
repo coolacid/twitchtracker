@@ -133,4 +133,10 @@ if (global.useirc) {
     load_plugin('irc');
 }
 
+if (global.config.admin.active) {
+    var new_win = gui.Window.get(
+        window.open('admin.html')
+    );
+}
+
 setInterval(updatemsg, 2500);

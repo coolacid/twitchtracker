@@ -40,3 +40,7 @@ followers:
 welcome:
     active: true
     text: AwwwYeah $USER <3!
+
+# Load an admin window
+admin:
+    active: false
