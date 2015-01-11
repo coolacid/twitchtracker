@@ -3,6 +3,8 @@ TwitchTracker
 
 This is a node-webkit application to monitor and provide twitch notifications. 
 
+![](https://github.com/coolacid/twitchtracker/blob/master/ScreenShots/ss1.png)
+
 Currently, this has two options, a scrolling window and write the events to a text file.
 
 To Run:
